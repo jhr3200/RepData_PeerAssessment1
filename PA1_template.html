@@ -191,6 +191,8 @@ mistep&lt;-signif(median(dailystepsum$step), digits = 8)
 <div id="question-4-examine-the-diffrence-between-the-activity-on-weekends-and-week-days-using-the-imputed-dataset" class="section level4">
 <h4>Question 4 Examine the diffrence between the activity on weekends and week days using # the imputed dataset</h4>
 <p>To do this the <strong>asWdays()</strong> function was used to create a new data set <strong>withweekdays{}</strong> which has an additional factor “day” tagging the day name to the date, then by subsetting on this factor two new data sets <strong>weekday{}</strong> and <strong>weekend{}</strong> are generated using the <strong>arrange()</strong> function from the dplyr package.</p>
+<pre class="r"><code>#load dplyr but do not display output
+library(dplyr)</code></pre>
 <pre><code>## 
 ## Attaching package: 'dplyr'
 ## 

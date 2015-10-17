@@ -3,6 +3,7 @@ title: "Reprodata_assignment1"
 author: "JHR3200"
 date: "Thursday, October 15, 2015"
 output: html_document
+keep_md: true
 ---
 ##Introduction
 
@@ -19,7 +20,7 @@ The variables included in this dataset are:
 
 [The data was downloaded from here](https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip)
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,cache=TRUE}
 dataset<-read.csv('activity.csv')
 ```
 
@@ -156,7 +157,7 @@ It can be seen that the **mean=**`r mestep` and **median=**`r mistep` are now ch
 
 To do this the **asWdays()** function was used to create a new data set **withweekdays{}** which has an additional factor "day" tagging the day name to the date, then by subsetting on this factor two new data sets **weekday{}** and **weekend{}** are generated using the **arrange()** function from the dplyr package. 
 
-```{r,echo=FALSE,results="hide"}
+```{r,echo=TRUE,results="hide"}
 #load dplyr but do not display output
 library(dplyr)
 ```
