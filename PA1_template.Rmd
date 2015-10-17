@@ -30,7 +30,7 @@ dataset<-read.csv('activity.csv')
 Note: **ignore the missing values in the dataset.**
 
 
-First the **aggegrate()** function was used to perform and aggegrated sum of daily steps on the raw dataframe **dataset{}**. The results are storedin the data.frame **dailystepsum{}**. Here NA's are not ignored in that summation.  
+First the **aggegrate()** function was used to perform and aggegrated sum of daily steps on the raw dataframe **dataset{}**. The results are stored in the data.frame **dailystepsum{}**. Here NA's are not ignored in that summation.  
 
 ```{r,echo=TRUE}
 #calculate the total steps per day NA's ar eignored using na.omit
@@ -46,7 +46,7 @@ mestep<-signif(mean(dailystepsum$step), digits = 8)
 mistep<-signif(median(dailystepsum$step), digits = 8)
 ```
 
-A histogram of the total steps per day is plotted, beacuse the **mean=**`r mestep` and **median=**`r mistep` are close together, It is not possible to see the diffrence between them on the plot using the **Abline()** function, So the legend is used to report the actual values on the plot.
+A histogram of the total steps per day is plotted, because the **mean=**`r mestep` and **median=**`r mistep` are close together, It is not possible to see the difference between them on the plot using the **Abline()** function, So the legend is used to report the actual values on the plot.
 
 ```{r,echo=TRUE}
 #Plot a histogram of the daily data
@@ -68,7 +68,7 @@ abline(v =mistep, col="BLUE", lty = 6)
 ####    2.1  Make a time series plot  5-minute interval and the average number of           steps taken across all days
 ####    2.2	Which 5-minute interval contains the maximum number of steps?
 
-The **aggerate()** function is used to calculate the mean numberof steps per interval across all days and stored in the data frame **meandailydat{}** .This data is plotted using plot to show mean activity dataset. 
+The **aggerate()** function is used to calculate the mean number of steps per interval across all days and stored in the data frame **meandailydat{}** .This data is plotted using plot to show mean activity dataset. 
 
 ```{r,echo=TRUE}
 #Generate the mean step dataframe across all days
@@ -103,7 +103,7 @@ The total number of missing values are `r numnas'.
  
 #####The following Imputation stragety was used
 The **meandailydata{}** dataframe(mean number of steps per interval across 2 months)
-generated in question 2 above, contains the mean dataset over all days, As such its interval values are a good proxy for missing values. The stragety is to replace any missing values (NA's) in raw **dataset{}** with the appropirate **meandailydata{}** value.The results are stored in the new dataframe **imputeddataset{}**.
+generated in question 2 above, contains the mean dataset over all days, As such its interval values are a good proxy for missing values. The strategy is to replace any missing values (NA's) in raw **dataset{}** with the appropriate **meandailydata{}** value.The results are stored in the new dataframe **imputeddataset{}**.
 
 ```{r,echo=TRUE}
 #if a NA's is present at a given interval find the corresponding value from
@@ -147,7 +147,7 @@ mistep<-signif(median(dailystepsum$step), digits = 8)
 #dev.off()
 ```
 
-It can be seen that the **mean=**`r mestep` and **median=**`r mistep` are now changed.Now the median and mean are the same the implication is this in now a perfectly symmetrical data set, the small change implies the NA had very little effecton the orignal dataset. 
+It can be seen that the **mean=**`r mestep` and **median=**`r mistep` are now changed.Now the median and mean are the same the implication is this in now a perfectly symmetrical data set, the small change implies the NA had very little effect on the original dataset. 
 
                               ========================
                                  ==================
@@ -187,7 +187,7 @@ weekday<-arrange(weekday, dates)
 weekend<-arrange(weekend, dates)
 ```
 
-Now by plotting these two data frames, **weekend{}**, **weekdays{}** the diffrence between them can be clearly seen. The activity during the weekdays is more frequent and on average has a higherintensity than the weekend. however teh weekend activity experiences graeter excursions from the mean, possibly indicating periods of exercize.
+Now by plotting these two data frames, **weekend{}**, **weekdays{}** the difference between them can be clearly seen. The activity during the weekdays is more frequent and on average has a higher intensity than the weekend. however the weekend activity experiences greater excursions from the mean, possibly indicating periods of exercise.
 
 ```{r,echo=TRUE}
 #Build a plot comparing the weekend and weekday dataframes
