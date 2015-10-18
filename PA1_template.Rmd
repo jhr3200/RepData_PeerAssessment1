@@ -157,7 +157,7 @@ It can be seen that the **mean=**`r mestep` and **median=**`r mistep` are now ch
 
 To do this the **asWdays()** function was used to create a new data set **withweekdays{}** which has an additional factor "day" tagging the day name to the date, then by subsetting on this factor two new data sets **weekday{}** and **weekend{}** are generated using the **arrange()** function from the dplyr package. 
 
-```{r,echo=TRUE,results="hide"}
+```{r,echo=TRUE, results = "hide"}
 #load dplyr but do not display output
 library(dplyr)
 ```
@@ -169,7 +169,7 @@ asWdays<-weekdays(as.Date(dates))
 
 #Create a new dataframe with  weekdays included
 withweekdays<-data.frame(dates=dates, day=asWdays, 
-                         steps=dataset[,1], Interval=dataset[,3] )
+                         steps=dataset[,1], interval=dataset[,3] )
 
 #Sort by day and create two dataframes 1 for weekdays and one for the weekend
 mon<- subset(withweekdays, day == "Monday")
@@ -186,15 +186,19 @@ weekend<-rbind(sat,sun)
 #Rearrange by date using dplyr function arrange() 
 weekday<-arrange(weekday, dates)
 weekend<-arrange(weekend, dates)
+
+# calculate the typical mean weekday and weekend day 
+meanweekday <- aggregate(steps~interval, weekday,mean)
+meanweekend <- aggregate(steps~interval, weekend,mean)
 ```
 
-Now by plotting these two data frames, **weekend{}**, **weekdays{}** the difference between them can be clearly seen. The activity during the weekdays is more frequent and on average has a higher intensity than the weekend. however the weekend activity experiences greater excursions from the mean, possibly indicating periods of exercise.
+Now by plotting these two data frames, **weekend{}**, **weekdays{}** the difference between them can be clearly seen. The activity during the weekdays peaks in the morning around 7-9am (morning exercize or travel to work?) and remains relatively low through the rest of the day with a smaller peak in the evening. Conversely the weekend has activity is low in the morning and reaches a plateua where it remanis until the late evening.
 
 ```{r,echo=TRUE}
 #Build a plot comparing the weekend and weekday dataframes
-par(mfrow = c(2, 1), mar = c(2, 2, 1, 1), oma = c(1, 0, 0, 0))
-  plot(weekday$steps,weekday$interval, main = "Weekday",type="l")
-  plot(weekend$steps,weekend$interval, main = "weekend",type="l")
+par(mfrow = c(2, 1), mar = c(2, 2, 1, 1), oma = c(0, 0, 2, 0))
+  plot(meanweekday$steps,meanweekday$Interval, main = "Average weekday",type="l")
+  plot(meanweekend$steps,meanweekend$Interval, main = "Average weekend",type="l")
   mtext("Number of steps weekdays Vs weekend", outer = TRUE)
 ```
 
