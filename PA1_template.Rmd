@@ -49,7 +49,7 @@ mistep<-signif(median(dailystepsum$step), digits = 8)
 
 A histogram of the total steps per day is plotted, because the **mean=**`r mestep` and **median=**`r mistep` are close together, It is not possible to see the difference between them on the plot using the **Abline()** function, So the legend is used to report the actual values on the plot.
 
-```{r,echo=TRUE}
+```{r hist_witNA,echo=TRUE,fig.path="figures/"}
 #Plot a histogram of the daily data
 hist(dailystepsum$steps,main = "Daily steps",xlab = "steps per day")
 
@@ -71,7 +71,7 @@ abline(v =mistep, col="BLUE", lty = 6)
 
 The **aggerate()** function is used to calculate the mean number of steps per interval across all days and stored in the data frame **meandailydat{}** .This data is plotted using plot to show mean activity dataset. 
 
-```{r,echo=TRUE}
+```{r meandailystep,echo=TRUE,fig.path="figures/"}
 #Generate the mean step dataframe across all days
 meandailydat <- aggregate(steps~interval, dataset,mean)
 
@@ -127,7 +127,7 @@ imputeddataset<-dataset
 
 To examine the effect of the imputation the analysis in question 1 is repeated on the imputed dataset **imputeddataset{}**
 
-```{r,echo=TRUE}
+```{r Hist_noNA,echo=TRUE,fig.path="figures/"}
 #Recalculate the total steps per day with imputed dataset
 dailystepsum <- aggregate(steps~date, imputeddataset,sum)
 
@@ -192,9 +192,9 @@ meanweekday <- aggregate(steps~interval, weekday,mean)
 meanweekend <- aggregate(steps~interval, weekend,mean)
 ```
 
-Now by plotting these two data frames, **weekend{}**, **weekdays{}** the difference between them can be clearly seen. The activity during the weekdays peaks in the morning around 7-9am (morning exercize or travel to work?) and remains relatively low through the rest of the day with a smaller peak in the evening. Conversely the weekend has activity is low in the morning and reaches a plateua where it remanis until the late evening.
+Now by plotting these two data frames, **meanweekend{}**, **meanweekday{}** the difference between them can be clearly seen. The activity during the weekdays peaks in the morning around 7-9am (morning exercize or travel to work?) and remains relatively low through the rest of the day with a smaller peak in the evening. Conversely the weekend has activity is low in the morning and reaches a plateua where it remanis until the late evening.
 
-```{r,echo=TRUE}
+```{r wkday_Wkend,echo=TRUE,fig.path="figures/"}
 #Build a plot comparing the weekend and weekday dataframes
 par(mfrow = c(2, 1), mar = c(2, 2, 1, 1), oma = c(0, 0, 2, 0))
   plot(meanweekday$steps,meanweekday$Interval, main = "Average weekday",type="l")

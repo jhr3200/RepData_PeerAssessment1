@@ -230,7 +230,7 @@ weekend&lt;-arrange(weekend, dates)
 # calculate the typical mean weekday and weekend day 
 meanweekday &lt;- aggregate(steps~interval, weekday,mean)
 meanweekend &lt;- aggregate(steps~interval, weekend,mean)</code></pre>
-<p>Now by plotting these two data frames, <strong>weekend{}</strong>, <strong>weekdays{}</strong> the difference between them can be clearly seen. The activity during the weekdays peaks in the morning around 7-9am (morning exercize or travel to work?) and remains relatively low through the rest of the day with a smaller peak in the evening. Conversely the weekend has activity is low in the morning and reaches a plateua where it remanis until the late evening.</p>
+<p>Now by plotting these two data frames, <strong>meanweekend{}</strong>, <strong>meanweekday{}</strong> the difference between them can be clearly seen. The activity during the weekdays peaks in the morning around 7-9am (morning exercize or travel to work?) and remains relatively low through the rest of the day with a smaller peak in the evening. Conversely the weekend has activity is low in the morning and reaches a plateua where it remanis until the late evening.</p>
 <pre class="r"><code>#Build a plot comparing the weekend and weekday dataframes
 par(mfrow = c(2, 1), mar = c(2, 2, 1, 1), oma = c(0, 0, 2, 0))
   plot(meanweekday$steps,meanweekday$Interval, main = &quot;Average weekday&quot;,type=&quot;l&quot;)
